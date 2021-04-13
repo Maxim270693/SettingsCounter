@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Counter} from "./components/Counter/Counter";
+import {SettingsCounter} from "./components/RootCounter/RootCounter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [maxValue, setMaxValue] = useState(5)
+    const [startValue, setStartValue] = useState(0)
+    const [button, setButton] = useState(startValue)
+
+
+    const onClickSet = (maxValue: number, startValue: number) => {
+        setButton(startValue)
+    }
+
+    return (
+        <div className='App'>
+            <SettingsCounter maxValue={maxValue}
+                         setMaxValue={setMaxValue}
+                         startValue={startValue}
+                         setStartValue={setStartValue}
+                         onClickSet={onClickSet}
+            />
+            <Counter button={button}
+                     setButton={setButton}
+                     startValue={startValue}
+                     setStartValue={setStartValue}
+                     maxValue={maxValue}
+            />
+        </div>
+    );
 }
 
 export default App;
